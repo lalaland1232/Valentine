@@ -1,22 +1,160 @@
-body {
+/* GLOBAL RESET */
+* {
     margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: #fff3f3;
-    color: #333;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Hero Section */
+body {
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+    color: #333;
+    background: linear-gradient(120deg, #ffb3c6, #ff9eb8, #ffc3a0, #eac5ff);
+    background-size: 300% 300%;
+    animation: bgMove 15s ease infinite;
+}
+
+/* ANIMATED GRADIENT */
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* PARALLAX CLOUDS */
+.cloud {
+    position: fixed;
+    width: 200%;
+    height: 300px;
+    left: -50%;
+    top: 0;
+    background-repeat: repeat-x;
+    background-size: contain;
+    z-index: -3;
+    pointer-events: none;
+}
+
+
+/* Now the layers */
+.layer1 {
+    background-image: url('assets/cloud1.png');
+    opacity: 0.55;
+    animation: cloudMove 60s linear infinite;
+}
+
+.layer2 {
+    background-image: url('assets/cloud2.png');
+    top: 200px;
+    opacity: 0.40;
+    animation: cloudMove 90s linear infinite;
+}
+
+.layer3 {
+    background-image: url('assets/cloud3.png');
+    top: 380px;
+    opacity: 0.30;
+    animation: cloudMove 120s linear infinite;
+}
+
+
+@keyframes cloudMove {
+    from { background-position: 0 0; }
+    to { background-position: -2000px 0; }
+}
+
+/* FLOATING PARTICLES */
+#particles {
+    position: fixed;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    font-size: 18px;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0) scale(1); opacity: 0.8; }
+    to { transform: translateY(-200px) scale(1.4); opacity: 0; }
+}
+
+/* THEME TOGGLE BUTTON */
+/* FIXED FLOATING BUTTONS */
+#themeToggle, #musicBtn {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    padding: 10px 15px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+    z-index: 999; /* stays on top */
+    box-shadow: 0 4px 10px rgba(255, 0, 80, 0.3);
+}
+
+/* PERFECT SPACING */
+#themeToggle {
+    top: 20px;
+    right: 20px;
+}
+
+#musicBtn {
+    position: fixed;
+    bottom: 20px;     /* bottom instead of top */
+    right: 20px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(255, 0, 80, 0.3);
+}
+
+/* MOBILE FIX */
+@media (max-width: 480px) {
+    #themeToggle {
+        top: 20px;
+        right: 20px;
+    }
+    #musicBtn {
+        top: 70px; /* drops down */
+        right: 20px;
+    }
+}
+
+
+/* HOVER EFFECT */
+#themeToggle:hover, #musicBtn:hover {
+    transform: scale(1.08);
+}
+
+/* HERO SECTION */
 .hero {
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
 }
+
 .hero-img {
-    width: 230px;
-    height: 230px;
-    object-fit: cover;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255, 80, 80, 0.5);
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(255, 120, 150, 0.6);
     animation: float 3s infinite ease-in-out;
+    border: 4px solid white;
 }
 
 @keyframes float {
@@ -25,60 +163,370 @@ body {
     100% { transform: translateY(0); }
 }
 
-/* Timeline */
-.timeline-path {
+/* CURVED LINE */
+#road-path {
     position: absolute;
-    top: 300px;
+    top: 350px;
     left: 0;
     z-index: -1;
 }
 
-.timeline {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-    padding: 20px;
+#roadLine {
+    filter: drop-shadow(0 0 6px #ffcfde);
+    stroke-dasharray: 18 18;
+    stroke-linecap: round;
 }
 
-.event {
-    width: 70%;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+/* GOLD DOT MARKERS */
+/* GOLD DOT STAGE MARKERS */
+.dot {
+    width: 16px;
+    height: 16px;
+    background: #ffd35c;
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0.3;
+    transition: 0.6s ease;
+}
+
+.dot.active {
+    opacity: 1;
+    transform: scale(1.3);
+    box-shadow: 0 0 15px #ffcc66;
+}
+
+
+/* EVENTS SECTION */
+.events {
     position: relative;
 }
-.event img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    margin-bottom: 10px;
-}
-.event.left {
-    align-self: flex-start;
-}
-.event.right {
-    align-self: flex-end;
+
+/* POLAROID */
+.polaroid {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    width: 260px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    transform: rotate(-2deg);
+    transition: 0.3s;
 }
 
-/* Fun Sections */
+.polaroid img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.caption {
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+    color: #444;
+}
+
+.slight {
+    transform: rotate(-3deg);
+}
+
+.slight:hover {
+    transform: rotate(-1deg) scale(1.05);
+}
+
+/* EVENT BOX */
+.event-box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+}
+
+.desc {
+    text-align: center;
+    margin-top: 10px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* EVENT ANIMATION */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translate(-50%, 40px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ENDING */
+.ending {
+    margin-top: 2400px;
+    text-align: center;
+}
+
+#endText {
+    font-size: 36px;
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 120, 150, 0.8);
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+}
+
+/* FUN SECTIONS */
 .angry, .reasons, .dont {
     text-align: center;
-    margin: 50px 0;
+    margin: 80px 0;
 }
 
 button {
-    background: #ff6b81;
+    background: #ff7fa7;
+    color: white;
     padding: 12px 20px;
     border: none;
-    border-radius: 12px;
-    color: white;
+    border-radius: 14px;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
 }
+
 button:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
+}
+
+/* MINIMAL THEME */
+body.minimal {
+    background: #f8f8f8;
+}
+
+body.minimal #roadLine {
+    stroke: #444 !important;
+    filter: none;
+}
+
+body.minimal .polaroid {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+body.minimal .caption {
+    color: black;
+}
+
+body.minimal #endText {
+    color: black;
+    text-shadow: none;
+}
+/* LITTLE MOMENTS */
+.little-moments {
+    text-align: center;
+    margin: 100px 0;
+    padding: 20px;
+}
+
+.lm-title {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    font-family: "Poppins", sans-serif;
+    color: #ff6b81;
+}
+
+.lm-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+}
+
+.lm-item {
+    background: white;
+    padding: 14px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transform: rotate(-2deg);
+    transition: 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.lm-item:nth-child(2),
+.lm-item:nth-child(5),
+.lm-item:nth-child(8) {
+    transform: rotate(2deg);
+}
+
+.lm-item img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.lm-caption {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    font-family: "Caveat", cursive;
+}
+
+/* Hover effect */
+.lm-item:hover {
+    transform: scale(1.07) rotate(0deg);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* Lightbox fullscreen view */
+#lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    display: none;
+}
+
+#lightbox img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: 16px;
+}
+/* NIGHT MODE THEME */
+body.night {
+    background: linear-gradient(120deg, #2b0038, #3b0054, #21002b);
+    background-size: 300% 300%;
+    animation: bgMove 12s ease infinite;
+    color: #ffd8f0;
+}
+
+body.night .hero-img {
+    box-shadow: 0 0 40px rgba(255, 120, 200, 0.7);
+}
+
+body.night .caption,
+body.night .desc,
+body.night h1,
+body.night h2,
+body.night p {
+    color: #ffd8f0 !important;
+}
+
+/* Clouds become darker lavender */
+body.night .layer1 {
+    filter: brightness(0.6);
+}
+body.night .layer2 {
+    filter: brightness(0.5);
+}
+body.night .layer3 {
+    filter: brightness(0.45);
+}
+
+/* Polaroids glow */
+body.night .polaroid,
+body.night .lm-item {
+    box-shadow: 0 0 20px rgba(255, 180, 220, 0.35);
+}
+
+/* Stars appear */
+#nightStars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: -2;
+    display: none;
+}
+
+body.night #nightStars {
+    display: block;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite alternate ease-in-out;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; transform: scale(1); }
+    to   { opacity: 1;   transform: scale(1.4); }
+}
+/* MOON */
+#nightMoon {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff8e5, #ffe2b3, #e6c899);
+    box-shadow: 0 0 25px rgba(255, 220, 150, 0.7);
+    z-index: -2;
+    display: none;
+}
+
+/* Shooting Star */
+.shooting-star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px white;
+    animation: shoot 1.3s ease-out forwards;
+    z-index: -2;
+}
+
+@keyframes shoot {
+    from {
+        transform: translate(-50px, -50px) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translate(300px, 300px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Night mode shows moon */
+body.night #nightMoon {
+    display: block;
+}
+/* FIREWORKS CANVAS */
+#fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none; /* appears only at end */
+    z-index: 9998;
+}
+
+/* LOVE MESSAGE */
+#loveMessage {
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ff85a2;
+    text-shadow: 0 0 10px rgba(255,120,150,0.8);
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
+    font-family: "Poppins", sans-serif;
 }
