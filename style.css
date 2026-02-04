@@ -524,19 +524,25 @@ body.night #nightMoon {
     z-index: 9998;
 }
 
-/* LOVE MESSAGE */
 #loveMessage {
-    position: fixed;
-    bottom: 50px;
     width: 100%;
     text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-    color: #ff85a2;
-    text-shadow: 0 0 10px rgba(255,120,150,0.8);
+    padding: 25px 0;
+
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 100, 130, 0.9);
+
     opacity: 0;
-    z-index: 9999;
-    pointer-events: none;
-    font-family: "Poppins", sans-serif;
+    transform: translateY(20px);
+    transition: 1s ease;
+
+    position: relative;     /* NOT fixed */
+    bottom: 0;
+
+    margin-top: 60px;       /* spacing above */
 }
+
+
 
