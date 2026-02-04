@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Story of Our Chaos ❤️</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP + ScrollReveal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <img src="assets/together.jpg" class="hero-img">
+        <h1>The Story of Our Chaos ❤️</h1>
+        <p>Funny. Cute. Dramatic. Everything we are.</p>
+    </header>
+
+    <!-- Wavy SVG timeline -->
+    <svg class="timeline-path" width="100%" height="1500">
+        <path d="M50 0 
+                 C150 150, 0 300, 150 450 
+                 S300 650, 100 900
+                 S0 1150, 200 1350" 
+              stroke="#ff6b81" stroke-width="5" fill="none" />
+    </svg>
+
+    <!-- TIMELINE CONTENT -->
+    <section class="timeline">
+
+        <!-- FRIENDSHIP ERA -->
+        <div class="event left">
+            <img src="assets/her1.jpg">
+            <h2>Friendship Era</h2>
+            <p>Two idiots pretending we were just friends 💀</p>
+        </div>
+
+        <!-- CONFUSION -->
+        <div class="event right">
+            <img src="assets/vc2.jpg">
+            <h2>Confusion Era</h2>
+            <p>I don’t like you but don’t talk to anyone else.</p>
+        </div>
+
+        <!-- NO CONTACT -->
+        <div class="event left">
+            <img src="assets/vc1.jpg">
+            <h2>20 Days No Contact</h2>
+            <p>Breakup without relationship 😭</p>
+        </div>
+
+        <!-- SITUATIONSHIP -->
+        <div class="event right">
+            <img src="assets/her2.jpg">
+            <h2>Situationship Era</h2>
+            <p>Low-key dating. High-key feelings.</p>
+        </div>
+
+        <!-- RELATIONSHIP -->
+        <div class="event left">
+            <img src="assets/together.jpg">
+            <h2>Relationship Era</h2>
+            <p>Official couple mode unlocked ❤️</p>
+        </div>
+
+    </section>
+
+    <!-- FUN SECTIONS -->
+
+    <section class="angry">
+        <h2>Her Mood When I Tease Her 😭</h2>
+        <input type="range" min="0" max="4" value="0" id="angryRange">
+        <p id="angryText">Normal 😇</p>
+    </section>
+
+    <section class="reasons">
+        <h2>Reasons I Love You ❤️</h2>
+        <button id="reasonBtn">Show one</button>
+        <p id="reasonOutput"></p>
+    </section>
+
+    <section class="dont">
+        <button id="dontClickBtn">Don't Click Me 😐</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
